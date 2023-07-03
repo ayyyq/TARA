@@ -3,4 +3,4 @@
 
 [paper](https://arxiv.org/abs/2305.19162)
 
-The code and data resources will be released in June.
+The code and data resources will be released as soon as possible.
