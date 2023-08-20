@@ -1,11 +1,9 @@
 # TARA
 
----
 Source code for ACL 2023 paper: [An AMR-based Link Prediction Approach for Document-level Event Argument Extraction](https://arxiv.org/abs/2305.19162).
 
 ## 🔧 How to use our code?
 
----
 ### 1. Dependencies
 ```bash
 pip install git+https://github.com/fastnlp/fastNLP@dev0.8.0
@@ -32,7 +30,6 @@ bash evaluate_wikievents.sh
 
 ## 🥳 Citation
 
----
 If you find our work useful, please cite our paper:
 ```bibtex
 @inproceedings{DBLP:conf/acl/0004GHZQZ23,
