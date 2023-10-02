@@ -14,12 +14,12 @@ pip install dgl-cu102 dglgo -f https://data.dgl.ai/wheels/repo.html
 ```
 
 ### 2. Data Preprocessing
-Kindly follow the instructions outlined in [TSAR](https://github.com/RunxinXu/TSAR#2-data-preprocessing) to obtain the *RAMS* and *WikiEvents* data, each accompnaied by its parsed AMR graphs. **Please replace `tranfer.py` in [data/wikievents](https://github.com/ayyyq/TARA/tree/main/data/wikievents) directory.**
+We provide the preprocessed data [here](https://drive.google.com/drive/folders/1R6mIFFtGcF_d-Pjkeu-xPnOWXcp0zKHW?usp=sharing), which can be downloaded and used directly.
 
-It it important to note that we have not yet supplied compressed AMR graphs or AMR graphs generated using AMRBART. However, we plan to release them in the near future.
+If you need to preprocess data from text, please refer to [data_processing](https://github.com/ayyyq/TARA/tree/main/data_processing).
 
 ### 3. Training
-Please first navigate to the apppropriate directory for *RAMS* or *Wikievents*: `src_rams` or `src_wikievents`. Then execute the commond `python train.py`. To make adjustments to hyperparameters, kindly refer to `src_x/parse.py` and implement any necessary modifications.
+Please execute the command `python src_x/train.py` for RAMS or WikiEvents, separately. To make adjustments to hyperparameters, kindly refer to `src_x/parse.py` and implement any necessary modifications.
 
 ### 4. Evaluation
 You can evaluate the trained model by running the following commands:
