@@ -30,7 +30,7 @@ class AMRSpanPipe(Pipe):
         self.tokenizer = tokenizer
         self.TRIGGER_LEFT = 5 if model_name.startswith('bert') else self.tokenizer('[', add_special_tokens=False, return_attention_mask=False)['input_ids'][0]
         self.TRIGGER_RIGHT = 6 if model_name.startswith('bert') else self.tokenizer(']', add_special_tokens=False, return_attention_mask=False)['input_ids'][0]
-        print(self.TRIGGER_LEFT, self.TRIGGER_RIGHT)
+        # print(self.TRIGGER_LEFT, self.TRIGGER_RIGHT)
         self.SNT_EDGE_TYPE = '6'
         self.meta_info = meta_info
         self.max_len = max_len  # input_ids的最大长度

@@ -383,7 +383,6 @@ class MyModel(nn.Module):
                     # 只关注filter出来的spans的loss
 
                 # if not self.use_topk:
-                #     # TODO: 没明白这里是什么意思
                 #     # Ignore invalid mentions even during training
                 #     selected_indices = torch.nonzero(prune_labels == 1).squeeze()
             else:

@@ -5,9 +5,17 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--tag', default=None, type=str)
     parser.add_argument('--suffix', default=None, type=str)
-    parser.add_argument('--dataset_dir', default='../data', type=str)
+    parser.add_argument('--dataset_dir', default='data', type=str)
     parser.add_argument('--dataset_name', default='wikievents', type=str)
+
+    parser.add_argument('--train_text_path', default='transfer-train.jsonl', type=str)
+    parser.add_argument('--dev_text_path', default='transfer-dev.jsonl', type=str)
+    parser.add_argument('--test_text_path', default='transfer-test.jsonl', type=str)
+    parser.add_argument('--train_amr_path', default='transition/transition-dglgraph-train.pkl', type=str)
+    parser.add_argument('--dev_amr_path', default='transition/transition-dglgraph-dev.pkl', type=str)
+    parser.add_argument('--test_amr_path', default='transition/transition-dglgraph-test.pkl', type=str)
     parser.add_argument('--amr_type', default='transition', choices=['amrbart', 'transition'])
+
     parser.add_argument('--model_name', default='roberta-large', type=str)
     parser.add_argument('--load_model_dir', default=None, type=str)
     parser.add_argument('--debug', action='store_true')
@@ -27,9 +35,7 @@ def parse_args():
     parser.add_argument('--max_len', default=512, type=int)
     parser.add_argument('--event_embedding_size', default=200, type=int)
     parser.add_argument('--max_span_width', default=12, type=int, help='max subwords span width')
-    # max_span_width = 10 for WikiEvents, max_span_width=51??? for RAMS
     parser.add_argument('--span_width_embedding_size', default=20, type=int, help='dimension of span_width_embs')
-    # parser.add_argument('--span_len', default=8, type=int)
     parser.add_argument('--prune_ratio', default=0.1, type=float)
     parser.add_argument('--max_num_extracted_spans', default=50, type=int)
     parser.add_argument('--prune_object', default='part', choices=['all', 'part'])
@@ -43,7 +49,6 @@ def parse_args():
     parser.add_argument('--not_use_label_mask', action='store_true')
     parser.add_argument('--pos_loss_weight', default=10, type=float)
     parser.add_argument('--label_smoothing', default=0.0, type=float)
-    # parser.add_argument('--pivot_epoch', default=-1, type=int, help='前后epoch不一样设置的节点')
     parser.add_argument('--lambda_weight', default=1.0, type=float)
 
     parser.add_argument('--seed', default=None, type=int)

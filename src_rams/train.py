@@ -97,8 +97,8 @@ def main():
     #####hyper
 
     fitlog.set_log_dir('logs/')
-    if args.debug or args.load_model_dir is not None:
-        fitlog.debug()
+    # if args.debug or args.load_model_dir is not None:
+    fitlog.debug()
     fitlog.commit(__file__)
     args.seed = fitlog.set_rng_seed(rng_seed=args.seed)
     os.environ['FASTNLP_GLOBAL_SEED'] = str(args.seed)
@@ -153,37 +153,13 @@ def main():
         return dl
 
     print('Preprocessing data...')
-    if args.dataset_name == 'wikievents':
-        if args.amr_type == 'transition':
-            if args.tag == 'compressed':
-                raise NotImplementedError
-            else:
-                paths = {'train': [os.path.join(args.dataset_dir, args.dataset_name, 'transfer-train.jsonl'),
-                                   os.path.join(args.dataset_dir, args.dataset_name, 'dglgraph-wikievents/dglgraph-wikievents-train.pkl')],
-                         'dev': [os.path.join(args.dataset_dir, args.dataset_name, 'transfer-dev.jsonl'),
-                                 os.path.join(args.dataset_dir, args.dataset_name, 'dglgraph-wikievents/dglgraph-wikievents-dev.pkl')],
-                         'test': [os.path.join(args.dataset_dir, args.dataset_name, 'transfer-test.jsonl'),
-                                  os.path.join(args.dataset_dir, args.dataset_name, 'dglgraph-wikievents/dglgraph-wikievents-test.pkl')]}
-        else:
-            raise NotImplementedError
-    elif args.dataset_name == 'rams':
-        if args.amr_type == 'transition':
-            if args.tag == 'compressed':
-                raise NotImplementedError
-            else:
-                paths = {'train': [os.path.join(args.dataset_dir, args.dataset_name, 'train.jsonlines'),
-                                   os.path.join(args.dataset_dir, args.dataset_name,
-                                                'dglgraph-rams/dglgraph-rams-train.pkl')],
-                         'dev': [os.path.join(args.dataset_dir, args.dataset_name, 'dev.jsonlines'),
-                                 os.path.join(args.dataset_dir, args.dataset_name,
-                                              'dglgraph-rams/dglgraph-rams-dev.pkl')],
-                         'test': [os.path.join(args.dataset_dir, args.dataset_name, 'test.jsonlines'),
-                                  os.path.join(args.dataset_dir, args.dataset_name,
-                                               'dglgraph-rams/dglgraph-rams-test.pkl')]}
-        else:
-            return NotImplementedError
-    else:
-        raise NotImplementedError
+    paths = {'train': [os.path.join(args.dataset_dir, args.dataset_name, args.train_text_path),
+                       os.path.join(args.dataset_dir, args.dataset_name, args.train_amr_path)],
+             'dev': [os.path.join(args.dataset_dir, args.dataset_name, args.dev_text_path),
+                     os.path.join(args.dataset_dir, args.dataset_name, args.dev_amr_path)],
+             'test': [os.path.join(args.dataset_dir, args.dataset_name, args.test_text_path),
+                      os.path.join(args.dataset_dir, args.dataset_name, args.test_amr_path)]}
+
     if args.model_name.startswith('bert'):
         tokenizer = BertTokenizer.from_pretrained(args.model_name)
         config = BertConfig.from_pretrained(args.model_name, num_labels=num_labels)
